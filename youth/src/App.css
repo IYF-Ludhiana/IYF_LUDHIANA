@@ -1,0 +1,190 @@
+
+/*Header*/
+.header {
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo-image {
+  width: 70px;
+  height: 60px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 8px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 8px;
+  z-index: -1;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: scale(0.9);
+}
+.nav-links a:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.nav-links a:hover {
+  color: #001f40;
+}
+.header-button .btn {
+  padding: 0.5rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.header-button .btn:hover {
+  background-color: #00008b;
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Optionally add a hamburger menu for mobile view */
+  }
+}
+
+/*Body*/
+
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  display: flex;
+  justify-content: center;
+  overflow-y: hidden;
+  align-items: center;
+  overflow: hidden; /* Ensures the content doesn't overflow */
+  background-color: #000; /* Black background to complement the image */
+}
+
+.carousel-image-container {
+  position: absolute;
+  width: 100%; /* Ensure the container takes full width */
+  height: 100%; /* Ensure the container takes full height */
+  overflow: hidden; /* Hide any overflow */
+  border-radius: 0; /* Remove any border radius for fullscreen effect */
+  box-shadow: none; /* Optional: Remove box-shadow */
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire space, maintaining aspect ratio */
+  transition: opacity 1s ease-in-out; /* Smooth transition for opacity */
+}
+
+.carousel-description {
+  position: absolute;
+  bottom: 140px; /* Move text 60px above from the bottom */
+  left: 20px;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 8px;
+  opacity: 0;
+  animation: fadeInDescription 2s ease-in-out forwards;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+@keyframes fadeInDescription {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*Scrolling Text*/
+
+/* Container for the scrolling text */
+.scroll-text-container {
+  width: 100%;
+  height: 40px; /* Adjust height as needed */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  background-color: #00008b; /* Dark blue background */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  margin: 0; /* Remove any margins */
+  padding: 0; /* Remove any padding */
+}
+
+/* Style for the text that will scroll */
+.scrolling-text {
+  font-size: 1rem; /* Smaller text size */
+  font-weight: bold;
+  color: white; /* White text color */
+  white-space: nowrap; /* Prevent text wrapping */
+  display: inline-block;
+  animation: scroll-text 12s linear infinite; /* Smooth infinite scroll animation */
+  will-change: transform; /* Optimize for smooth scrolling */
+}
+
+/* Scroll animation */
+@keyframes scroll-text {
+  0% {
+    transform: translateX(100%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
+
+/* Apply a word-by-word reveal */
+.scroll-text-container .scrolling-text span {
+  transform: translateX(100%); /* Start from the right */
+  animation: reveal-text 1s forwards;
+  animation-delay: calc(0.1s * var(--word-index)); /* Delay for each word */
+}
+
+/* Gradual reveal effect */
+@keyframes reveal-text {
+  0% {
+    transform: translateX(100%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(0); /* Move into the visible area */
+  }
+}
